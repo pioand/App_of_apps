@@ -1,3 +1,8 @@
+def frontendImage="pioand/frontend"
+def backendImage="pioand/backend"
+def dockerRegistry=""
+def registryCredentials="dockerhub" 
+
 pipeline {
     agent {
       label 'agent'
