@@ -3,9 +3,9 @@ pipeline {
       label 'agent'
     }
     stages {
-        stage('Hello') {
+        stage('Get Code') {
             steps {
-                echo 'Hello World'
+                checkout scm
             }
         }
     }
