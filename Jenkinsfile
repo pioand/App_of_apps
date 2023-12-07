@@ -58,6 +58,17 @@ pipeline {
                 sh "python3 -m pytest test/selenium/frontendTest.py"                
             }
         }
+        stage('Run terraform') {
+            steps {
+                dir('Terraform') {                
+                    git branch: 'main', url: 'https://github.com/pioand/Terraform.git'
+                    withAWS(credentials:'AWS', region: 'us-east-1') {
+                            sh 'terraform init -backend-config=piotr-andrzejewski-panda-devops-core-15'
+                            sh 'terraform apply -auto-approve -var bucket_name=piotr-andrzejewski-panda-devops-core-15'
+                    } 
+                }
+            }
+        }
     }
     post {
         always {
